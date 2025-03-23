@@ -34,8 +34,17 @@ except ValueError:
 selected_choice = str(kp_entries[choice])
 print(f"\n{selected_choice}")
 
-entry_name = str(selected_choice[selected_choice.find("/") + 1 : selected_choice.find("(")]).strip()
+entry_name = str(
+    selected_choice[selected_choice.find("/") + 1 : selected_choice.find("(")]
+).strip()
 entry_details = kp.find_entries(title=entry_name, first=True)
 print(f"\nEntry: {entry_name}")
 print(f"Password: {entry_details.password}")
-print(f"OTP: {pyotp.parse_uri(entry_details.otp).now()}")
+
+otp_choice = input("\nShow OTP now? (y/n): ").upper()
+
+if otp_choice == "Y":
+    try:
+        print(f"OTP: {pyotp.parse_uri(entry_details.otp).now()}")
+    except TypeError:
+        print("No OTP found!")
