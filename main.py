@@ -40,6 +40,7 @@ entry_name = str(
 entry_details = kp.find_entries(title=entry_name, first=True)
 print(f"\nEntry: {entry_name}")
 print(f"Password: {entry_details.password}")
+print(f"URL: {entry_details.url}")
 
 otp_choice = input("\nShow OTP now? (y/n): ").upper()
 
